@@ -6,43 +6,70 @@ function updateTypographySize() {
     let lgSize = document.getElementById('fontSizeLg').value;
     let xlSize = document.getElementById('fontSizeXl').value;
     let xxlSize = document.getElementById('fontSizeXxl').value;
-    const fontFamily = document.getElementById('fontFamily').value;
-    const fontImport = document.getElementById('fontImport').value;
+    
+    const fontFamilyHeading = document.getElementById('fontFamilyHeading').value;
+    const fontImportHeading = document.getElementById('fontImportHeading').value;
+    const fontFamilyBody = document.getElementById('fontFamilyBody').value;
+    const fontImportBody = document.getElementById('fontImportBody').value;
     const designSystem = document.getElementById('design-system');
     const cssCodeBlock = document.getElementById('cssCode');
     
 
     
 
-    let fontFaceImport = '';
+    let fontFaceImportHeading = '';
+    let fontFaceImportBody = '';
+    let fontFaceAssign = '';
     // Generate optional @font-face import if provided
-    if(fontFamily) {
-        if(fontImport) {
-            fontFaceImport = 
+    if (fontFamilyHeading) {
+        // if (fontImportHeading) {
+            fontFaceImportHeading = fontImportHeading ? 
             `@font-face {
-                font-family: '${fontFamily}';
-                src: url('${fontImport}') format('woff2');
+                font-family: '${fontFamilyHeading}';
+                src: url('${fontImportHeading}') format('woff2');
+            }` : `font-family: '${fontFamilyHeading}';`
+    }
+    if (fontFamilyBody) {
+        if (fontImportBody) {
+            fontFaceImportBody = 
+            `@font-face {
+                font-family: '${fontFamilyBody}';
+                src: url('${fontImportBody}') format('woff2');
             }`}
         else {
-            fontFaceImport = 
-            `font-family: '${fontFamily}';`
+            fontFaceImportBody = 
+            `font-family: '${fontFamilyBody}';`
         }
     }
+    if (fontFamilyHeading && fontFamilyBody) {
+        fontFaceAssign = `
+            font-family: '${fontFamilyBody}';
+            h1,h2,h3,h4,h5 {
+            font-family: '${fontFamilyHeading}'
+            }`;
+            designSystem.style.fontFamily = fontFamilyBody;
+            designSystem.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(header => {header.style.fontFamily = fontFamilyHeading;});
+    } else if (fontFamilyBody) {
+        fontFaceAssign = `font-family: '${fontFamilyBody}';`
+        designSystem.style.fontFamily = fontFamilyBody;
+    }
     
-    if(scaleFont) {
+    if (scaleFont) {
         smSize = baseSize * 0.75;
         mdSize = baseSize * 1.25;
         lgSize = baseSize * 1.5;
         xlSize = baseSize * 2;
         xxlSize = baseSize * 2.5;
     }
-    
+
     // Apply the new font size and font family to the design system column
     designSystem.style.fontSize = baseSize + 'px';
-    designSystem.style.fontFamily = fontFamily;
+    // designSystem.style.fontFamily = fontFamily;
     
     // Update the CSS display
     cssCodeBlock.textContent = `
+${fontFaceImportHeading}
+${fontFaceImportBody}
 html {
     font-size: ${baseSize}px;
 }
@@ -54,8 +81,8 @@ html {
     --font-size-xl: ${xlSize}px;
     --font-size-xxl: ${xxlSize}px;
 }
-${fontFaceImport}
 
+${fontFaceAssign}
 h1 {
     font-size: var(--font-size-xxl);
 }
@@ -71,16 +98,3 @@ sm {
 `;
 }
     
-//     // Apply the new font size only to the design system column
-//     designSystem.style.fontSize = baseSize + 'px';
-    
-//     // Update the CSS display
-//     cssCodeBlock.textContent = 
-// `:root {
-//     --font-size-base: ${baseSize}px;
-//     --font-size-sm: ${baseSize * 0.75}px;
-//     --font-size-md: ${baseSize * 1.25}px;
-//     --font-size-lg: ${baseSize * 1.5}px;
-//     --font-size-xl: ${baseSize * 2}px;
-//     --font-size-xxl: ${baseSize * 2.5}px;
-// }`;
