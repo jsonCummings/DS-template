@@ -3,82 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Design System Template</title>
+    <title>Design System Wizard</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧙🏼‍♂️</text></svg>">
     <link rel="stylesheet" href="main.css">
+    <script src="tabs.js" defer></script>
     <script src="typeSize.js" defer></script>
 </head>
     <body>
-        <div class="container">
-            <!-- Controls Panel -->
-            <div class="panel">
-                <h2>Controls</h2> <!-- have ability to link/unlink to current percentages-->
-                <h3>Typography</h3>
-                <div>
-                    <label for="fontFamilyHeading">Font Family - Heading</label>
-                    <input type="string" id="fontFamilyHeading">
+        <!-- todo: add Header with light/dark controls -->
+         <header>
+            <h1>Design System Wizard</h1>
+         </header>
+        <section class="container">
+            <!-- Controls Panels -->
+             <section class="panel panelControls">
+                <div class="tabs">
+                    <button class="tablink tablink-controls active" onclick="openControlsTab(event, 'typography')">Typography</button>
+                    <button class="tablink tablink-controls disabled">Padding</button>
+                    <button class="tablink tablink-controls disabled">Grid</button>
+                    <button class="tablink tablink-controls disabled">Colors</button>
                 </div>
-                <div>
-                    <label for="fontImportHeading">Font Import - Heading</label>
-                    <input type="string" id="fontImportHeading">
-                </div>
-                <div>
-                    <label for="fontFamilyBody">Font Family</label>
-                    <input type="string" id="fontFamilyBody">
-                </div>
-                <div>
-                    <label for="fontImportBody">Font Import</label>
-                    <input type="string" id="fontImportBody">
-                </div>
-                <div>
-                    <label for="typographySize">Base Font Size (px): </label>
-                    <input type="number" id="typographySize" step="1" value="16">
-                </div>
-                <div>
-                    <label for="typographySize">Scale Fonts with Base</label>
-                    <input type="checkbox" id="fontScale">
-                </div>
-                <div>
-                    <label for="fontSizeSm">Small Font Size (px): </label>
-                    <input type="number" id="fontSizeSm" value="12">
-                </div>
-                <div>
-                    <label for="fontSizeMd">Medium Font Size (px): </label>
-                    <input type="number" id="fontSizeMd" value="20">
-                </div>
-                <div>
-                    <label for="fontSizeLg">Large Font Size (px): </label>
-                    <input type="number" id="fontSizeLg" value="24">
-                </div>
-                <div>
-                    <label for="fontSizeXl">Extra Large Font Size (px): </label>
-                    <input type="number" id="fontSizeXl" value="32">
+                <section class="controls" id="typography">
+                    <!-- have ability to link/unlink to current percentages-->
+                    <div class="inputText">
+                        <label for="fontFamilyBody">Font Family</label>
+                        <input type="text" id="fontFamilyBody">
                     </div>
-                <div>
-                    <label for="fontSizeXxl">XXL Font Size (px): </label>
-                    <input type="number" id="fontSizeXxl" value="40">
-                </div>
-                <div>
-                    <button onclick="updateTypographySize()">Apply</button>
-                </div>
-            </div>
+                    <div class="inputText">
+                        <label for="fontImportBody">Font Import</label>
+                        <input type="text" id="fontImportBody">
+                    </div>
+                    <div class="inputCheckbox">
+                        <label for="useREMs">Use rems</label>
+                        <input type="checkbox" id="useREMs">
+                    </div>
+                    <div class="inputCheckbox">
+                        <label for="fontScale">Scale Fonts with Base</label>
+                        <input type="checkbox" id="fontScale">
+                    </div>
+                    <div class="inputDropdown">
+                        <label for="fontScaleNumber">Scale for Fonts</label>
+                        <!-- add disable to select when scale not selected?-->
+                        <select id="fontScaleNumber" name="scale">
+                            <option value="1.067">1.067</option>
+                            <option value="1.125">1.125</option>
+                            <option value="1.2">1.2</option>
+                            <option value="1.25">1.25</option>
+                            <option value="1.333">1.333</option>
+                            <option value="1.414">1.414</option>
+                            <option value="1.5">1.5</option>
+                            <option value="1.618">1.618</option>
+                        </select>
+                    </div>
+                    <div class="inputText">
+                        <label for="typographySize">Base Font Size (px): </label>
+                        <input type="number" id="typographySize" step="1" value="16">
+                    </div>
+                    <div class="inputNumber">
+                        <label for="fontSizeSm">Small Font Size (px): </label>
+                        <input type="number" id="fontSizeSm" value="12">
+                    </div>
+                    <div class="inputNumber">
+                        <label for="fontSizeMd">Medium Font Size (px): </label>
+                        <input type="number" id="fontSizeMd" value="20">
+                    </div>
+                    <div class="inputNumber">
+                        <label for="fontSizeLg">Large Font Size (px): </label>
+                        <input type="number" id="fontSizeLg" value="24">
+                    </div>
+                    <div class="inputNumber">
+                        <label for="fontSizeXl">Extra Large Font Size (px): </label>
+                        <input type="number" id="fontSizeXl" value="32">
+                        </div>
+                    <div class="inputNumber">
+                        <label for="fontSizeXxl">XXL Font Size (px): </label>
+                        <input type="number" id="fontSizeXxl" value="40">
+                    </div>
 
-                <!-- Design System Preview -->
-                <div class="panel" id="design-system">
-                    <h1>Design System</h1>
-                    <h2>Typography</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                    <h3>Heading 3</h3>
-                    <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    <small>Small text example.</small>
-                </div>
+                    <div>
+                        <button class="submit" onclick="updateTypographySize()">Apply</button>
+                    </div>
+                </section>
+            </section>
 
-                <!-- Code Display -->
-                <div class="panel">
-                    <h2>CSS Code</h2>
+            <!-- Design System Preview -->
+            <section class="panel panelPreview" id="design-system">
+                <div class="tabs">
+                    <button class="tablink tablink-preview active" onclick="openPreviewTab(event, 'type')">Scale</button>
+                    <button class="tablink tablink-preview disabled" onclick="openPreviewTab(event, 'demo')">Demo</button>
+                    <button class="tablink tablink-preview" onclick="openPreviewTab(event, 'css')">Code</button>
+                </div>
+                <section id="typeExample" class="examples">
+                    <div class="example">
+                        <strong>h1</strong>
+                        <span id="h1">64px</span>
+                        <h1 class="overrideHeader">
+                            The quick onyx dwarf jumps over the lazy goblin.
+                        </h1>
+                    </div>
+
+                    <div class="example">
+                        <strong>h2</strong>
+                        <span id="h2">48px</span>
+                        <h2 class="overrideHeader">
+                            The quick onyx dwarf jumps over the lazy goblin.
+                        </h2>
+                    </div>
+
+                    <div class="example">
+                        <strong>h3</strong>
+                        <span id="h3">32px</span>
+                        <h3 class="overrideHeader">
+                            The quick onyx dwarf jumps over the lazy goblin.
+                        </h3>
+                    </div>
+
+                    <div class="example">
+                        <strong>h4</strong>
+                        <span id="h4">28px</span>
+                        <h4 class="overrideHeader">
+                            The quick onyx dwarf jumps over the lazy goblin.
+                        </h4>
+                    </div>
+
+                    <div class="example">
+                        <strong>p</strong>
+                        <span id="base">16px</span>
+                        <p class="overrideHeader">
+                            The quick onyx dwarf jumps over the lazy goblin.
+                        </p>
+                    </div>
+                    <div class="example">
+                        <strong>small</strong>
+                        <span id="small">12px</span>
+                        <small class="overrideHeader">
+                            The quick onyx dwarf jumps over the lazy goblin.
+                        </small>
+                    </div>
+                </section>
+                <section id="cssExample" class="examples">
                     <div class="code-block">
-                        <code id="cssCode"></code>
+                        <code id="cssCode">
+
+                        </code>
                     </div>
+                </section>
+            </section>
+
+
+
+            <!-- Code Display 
+                todo:Add copy button  & email button -->
+            <!-- <section class="panel">
+                <h2>CSS Code</h2>
+                <div class="code-block">
+                    <code id="cssCode"></code>
                 </div>
-            </div>
+            </section> -->
+        </section>
     </body>
 </html>
