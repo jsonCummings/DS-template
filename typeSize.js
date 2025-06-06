@@ -75,7 +75,7 @@ html {
 
 :root {
 ${sizeVars}
-  --ds-font-size-base: 1${unit};
+  --ds-font-size-base: {sizes.base}${unit};
 }
 
 h1 { font-size: var(--font-size-xxl); }

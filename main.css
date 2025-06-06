@@ -5,7 +5,6 @@
     --font-size-lg: 1.5rem;
     --font-size-xl: 2rem;
     --font-size-xxl: 2.5rem;
-
     
     /* Spacing Scale */
     --spacing-xs: 4px;
@@ -27,6 +26,12 @@
     --color-white: #ffffff;
     --color-border: #dee2e6;
 
+    /* new colors */
+    --color-blk: #0d1b2a;
+    --color-dk-grey: #1b263b;
+    --color-grey: #415a77;
+    --color-lt-grey: #778da9;
+    --color-lt-blue: #e0e1dd;
 
     /* DS Font */
     --ds-font-family: 'Arial', sans-serif;
@@ -57,7 +62,7 @@ body {
     font-family: Arial, sans-serif;
     color: var(--color-text);
     background: var(--color-background);
-    background: var(--color-dark-blue);
+    background: var(--color-blk);
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -71,7 +76,7 @@ header {
 header h1 {
     margin: 0;
     padding: var(--spacing-md);
-    color: var(--color-light-blue);
+    color: var(--color-lt-blue);
 }
 
 /* Layout */
@@ -80,23 +85,22 @@ header h1 {
     grid-template-columns: 300px 1fr;
     height: 100%;
     gap: var(--spacing-md);
+    margin: 0 var(--spacing-md) var(--spacing-md);
 }
-
 
 .panel {
     background: var(--color-white);
     border-radius: 8px;
-    background: var(--color-light-blue);
+    background: var(--color-lt-grey);
 }
 
 .tabs {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    background-color: var(--color-light-blue);
     padding-top: 1rem;
     margin-bottom: 1rem;
-    border-bottom: 1px solid var(--color-dark-blue);
+    border-bottom: 1px solid var(--color-dk-grey);
 }
 
 button.tablink  {
@@ -105,6 +109,7 @@ button.tablink  {
     padding-bottom: .5rem;
     border-bottom: 2px solid none;
 }
+
 .tablink.disabled {
     opacity: 0.5;
     cursor: not-allowed;
@@ -125,9 +130,8 @@ button.tablink  {
     justify-content: space-between;
     gap: var(--spacing-md);
     margin: 0 var(--spacing-md);
-    height: 100
+    height: 100%;
 }
-
 
 /* Buttons */
 .button {
@@ -152,16 +156,13 @@ input, select {
     padding: var(--spacing-xs);
     border: 1px solid var(--color-border);
     border-radius: 4px;
+    background-color: var(--color-lt-blue);
 }
-
-select {
-    background: var(--color-white);
-}
-
 
 input[type="checkbox"] {
     width: 1rem;
     height: 1rem;
+    background-color: var(--color-lt-blue);
 }
 
 .inputText, .inputDropdown, .inputNumber  {
@@ -183,14 +184,16 @@ label {
 
 .submit {
     width: 100%;
-    background: var(--color-primary);
-    color: var(--color-white);
+    background: var(--color-lt-blue);
+    color: var(--color-dk-grey);
     font-size: 1rem;;
     font-weight: 700;
     padding: var(--spacing-sm) var(--spacing-md);
     border: none;
     margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-md)
 }
+
 /* Card Component */
 .card {
     border: 1px solid var(--color-border);
@@ -225,22 +228,28 @@ label {
 #design-system {
     font-size: var(--ds-font-size-base);
 }
+
 #design-system h1 { 
     font-size: var(--ds-font-size-xxl);
 }
+
 #design-system h2 { 
     font-size: var(--ds-font-size-xl);
 }
+
 #design-system h3 { 
     font-size: var(--ds-font-size-lg);
 }
+
 #design-system h4 { 
     font-size: var(--ds-font-size-md);
 }
 
+
 #design-system p {
     font-size: var(--ds-font-size-base); 
 }
+
 #design-system small { 
     font-size: var(--ds-font-size-sm); 
 }
