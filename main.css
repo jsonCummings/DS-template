@@ -1,0 +1,255 @@
+:root {
+    --font-size-sm: 0.75rem;
+    --font-size-base: 1rem;
+    --font-size-md: 1.25rem;
+    --font-size-lg: 1.5rem;
+    --font-size-xl: 2rem;
+    --font-size-xxl: 2.5rem;
+    
+    /* Spacing Scale */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --spacing-xxl: 40px;
+    
+    /* Colors */
+    --color-light-blue: #DBDAE1;
+
+    --color-dark-blue: #1C1E3A;
+
+    --color-primary: #007bff;
+    --color-secondary: #6c757d;
+    --color-background: #f8f9fa;
+    --color-text: #212529;
+    --color-white: #ffffff;
+    --color-border: #dee2e6;
+
+    /* new colors */
+    --color-blk: #0d1b2a;
+    --color-dk-grey: #1b263b;
+    --color-grey: #415a77;
+    --color-lt-grey: #778da9;
+    --color-lt-blue: #e0e1dd;
+
+    /* DS Font */
+    --ds-font-family: 'Arial', sans-serif;
+    --ds-font-import: null;
+    /* DS Font Sizes */
+    --ds-font-size-sm: 12px;
+    --ds-font-size-base: 16px;
+    --ds-font-size-md: 20px;
+    --ds-font-size-lg: 24px;
+    --ds-font-size-xl: 32px;
+    --ds-font-size-xxl: 40px;
+
+    /* DS Spacing Scale */
+    --ds-spacing-xs: 4px;
+    --ds-spacing-sm: 8px;
+    --ds-spacing-md: 16px;
+    --ds-spacing-lg: 24px;
+    --ds-spacing-xl: 32px;
+    --ds-spacing-xxl: 40px;
+}
+
+/* Base Styles */
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: var(--color-text);
+    background: var(--color-background);
+    background: var(--color-blk);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    height: 100vh;
+}
+
+header {
+    width: 100%;
+}
+header h1 {
+    margin: 0;
+    padding: var(--spacing-md);
+    color: var(--color-lt-blue);
+}
+
+/* Layout */
+.container {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    height: 100%;
+    gap: var(--spacing-md);
+    margin: 0 var(--spacing-md) var(--spacing-md);
+}
+
+.panel {
+    background: var(--color-white);
+    border-radius: 8px;
+    background: var(--color-lt-grey);
+}
+
+.tabs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--color-dk-grey);
+}
+
+button.tablink  {
+    border: none;
+    background: transparent;
+    padding-bottom: .5rem;
+    border-bottom: 2px solid none;
+}
+
+.tablink.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.tablink.active {
+    border-bottom: 2px solid var(--color-dark-blue);
+}
+
+.panelControls {
+    display: flex;
+    flex-direction: column;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    margin: 0 var(--spacing-md);
+    height: 100%;
+}
+
+/* Buttons */
+.button {
+    display: inline-block;
+    font-size: var(--font-size-base);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.button:hover {
+    background: darkblue;
+}
+
+/* Form Elements */
+input, select {
+    font-size: var(--font-size-base);
+    padding: var(--spacing-xs);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    background-color: var(--color-lt-blue);
+}
+
+input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+    background-color: var(--color-lt-blue);
+}
+
+.inputText, .inputDropdown, .inputNumber  {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.inputCheckbox{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+label {
+    font-size: var(--font-size-base);
+}
+
+.submit {
+    width: 100%;
+    background: var(--color-lt-blue);
+    color: var(--color-dk-grey);
+    font-size: 1rem;;
+    font-weight: 700;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: none;
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-md)
+}
+
+/* Card Component */
+.card {
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: var(--spacing-md);
+    background: var(--color-white);
+}
+
+.overrideHeader{
+    display: inline-block;
+}
+
+/* Code Block */
+.code-block {
+    background: #222;
+    color: #fff;
+    padding: var(--spacing-md);
+    font-family: monospace;
+    white-space: pre-wrap;
+    border-radius: 5px;
+}
+
+.examples {
+    padding: 0 var(--spacing-md) var(--spacing-lg);
+}
+
+#cssExample {
+    display: none;
+}
+
+/* Typography */
+#design-system {
+    font-size: var(--ds-font-size-base);
+}
+
+#design-system h1 { 
+    font-size: var(--ds-font-size-xxl);
+}
+
+#design-system h2 { 
+    font-size: var(--ds-font-size-xl);
+}
+
+#design-system h3 { 
+    font-size: var(--ds-font-size-lg);
+}
+
+#design-system h4 { 
+    font-size: var(--ds-font-size-md);
+}
+
+
+#design-system p {
+    font-size: var(--ds-font-size-base); 
+}
+
+#design-system small { 
+    font-size: var(--ds-font-size-sm); 
+}
